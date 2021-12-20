@@ -1,5 +1,6 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import schema from './validation/FormSchema';
 import axios from 'axios';
@@ -71,16 +72,29 @@ function App() {
 
   return (
     <div className="App">
-      <header className="header-container">
-        <h1>Header goes here</h1>
-      </header>
-      <LoginForm
-        values={formValues}
-        change={inputChange}
-        submit={formSubmit}
-        disabled={disabled}
-        errors={formErrors}
-      />
+      <Router>
+        <header className="header-container">
+          <div className='nav-links'>
+              <Link to='/'>Home</Link>
+              <Link to='/login'>Login</Link>
+          </div>
+        </header>
+        <Switch>
+          <Route exact path='/login'>
+            <LoginForm
+              values={formValues}
+              change={inputChange}
+              submit={formSubmit}
+              disabled={disabled}
+              errors={formErrors}
+            />
+          </Route>
+          <Route exact path='/'>
+            {/* <Homepage /> */}
+            <h1>Homepage goes here</h1>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
