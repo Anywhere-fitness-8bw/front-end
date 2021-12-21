@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {Switch, Route, Link } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import ClassList from './components/ClassList';
+import PrivateRoute from './components/PrivateRoute';
 import schema from './validation/FormSchema';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -73,7 +74,6 @@ function App() {
 
   return (
     <div className="App">
-
         <header className="header-container">
           <div className='nav-links'>
               <Link to='/'>Home</Link>
@@ -91,9 +91,8 @@ function App() {
               errors={formErrors}
             />
           </Route>
-          <Route exact path= "/classes" component= {ClassList}/>
+          <PrivateRoute exact path= "/classes" component= {ClassList}/>
         </Switch>
-
     </div>
   );
 }
