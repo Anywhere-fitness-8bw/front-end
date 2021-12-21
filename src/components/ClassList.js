@@ -1,46 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 
-const StyledContainer = styled.div`
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledButton = styled.button`
-  min-width: 13%;
-  border: none;
-  font-size: 18px;
-  padding: 7px 10px;
-  color:green;
-  transition: all .2s;
-  margin-top: 5%;
-  &&:hover {
-      cursor: pointer;
-      background-color: green;
-      transform: scale(1.125);
-      color: white;
-      transition: ease-in-out .2s;
-  }
-`;
-
-const StyledImgs = styled.img`
-        
-`;
-
-const StyledClassOptions = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-`;
-
-const StyledClassContainters = styled.label`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-`;
 
 export default function ClassList(props) {
 
@@ -104,3 +64,44 @@ export default function ClassList(props) {
         </StyledContainer>
       )
 } 
+
+const StyledContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledButton = styled.button`
+  min-width: 13%;
+  border: none;
+  font-size: 18px;
+  padding: 7px 10px;
+  color:green;
+  transition: all .2s;
+  margin-top: 5%;
+  &&:hover {
+      cursor: pointer;
+      background-color: green;
+      transform: scale(1.125);
+      color: white;
+      transition: ease-in-out .2s;
+  }
+`;
+
+const StyledImgs = styled.img`
+        
+`;
+
+const StyledClassOptions = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+`;
+
+const StyledClassContainters = styled.label`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+`;

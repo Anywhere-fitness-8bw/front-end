@@ -79,7 +79,7 @@ function App() {
           <div className='nav-links'>
               <Link to='/'>Home</Link>
               <Link to='/login'>Login</Link>
-              <Link to= '/classes'>Classes</Link>
+              <Link to= '/classlist'>Classes</Link>
           </div>
         </header>
         <Switch>
@@ -92,13 +92,14 @@ function App() {
               errors={formErrors}
             />
           </Route>
+
           <PrivateRoute exact path = '/classlist' component={ClassList} />
           <Route exact path ='/logout' >
             <Logout />
           </Route>
           
-        </Switch>
 
+        </Switch>
     </div>
   );
 }

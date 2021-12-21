@@ -1,46 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
+
+const initialCreds = {
+    username: '',
+    password: ''
+} 
 
 export default function LoginForm(props) {
-    const {
-        values,
-        submit,
-        change,
-        disabled,
-        errors,
-    } = props
+    const [creds, setCreds] = useState(initialCreds)
+    const {errors, disabled} = props;
+    const {push} = useHistory();
 
-    const onSubmit = evt => {
-        evt.preventDefault()
-        submit()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:5000/api/login', creds)
+        .then(res => {
+            localStorage.setItem('token', res.data.token);
+            push('/classes')
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
-    const onChange = evt => {
-        const { name, value } = evt.target
-        change(name, value)
+    const handleChange = (e) => {
+        setCreds({
+            ...creds,
+            [e.target.name]: e.target.value
+        })
     }
+
     return (
-        <form className='form-container' onSubmit={onSubmit}>
+        <form className='form-container' onSubmit={handleSubmit}>
             <h1>Welcome to Anywhere Fitness!</h1>
             <div className='form-container inputs'>
                 <label>Username
                     <input
-                        value={values.username}
-                        onChange={onChange}
+                        onChange={handleChange}
                         name='username'
                         type='text'
                     />
                 </label>
                 <label>Password
                     <input
-                        value={values.password}
-                        onChange={onChange}
+                        onChange={handleChange}
                         name='password'
                         type='password'
                     />
                 </label>
             </div>
             <div className='form-container submit'>
-                <button disabled={disabled}>Submit</button>
+                <button>Submit</button>
                 <div className='errors'>
                     <div>{errors.username}</div>
                     <div>{errors.password}</div>
