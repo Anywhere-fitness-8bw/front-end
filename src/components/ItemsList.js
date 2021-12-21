@@ -36,6 +36,13 @@ const StyledClassOptions = styled.div`
     flex-wrap: wrap;
 `;
 
+const StyledClassContainters = styled.label`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+`;
+
 export default function ItemsList(props) {
 
     return (        
@@ -57,33 +64,33 @@ export default function ItemsList(props) {
                 
                 <StyledClassOptions>
                     <h2>Available Classes</h2>                    
-                    <label>Crossfit:
+                    <StyledClassContainters>Crossfit:
                         <img src='' alt='Image of Crossfit'/>
                         <input
                             type='checkbox'
                         />
-                    </label>
+                    </StyledClassContainters>
 
-                    <label>Power Lifting: 
+                    <StyledClassContainters>Power Lifting: 
                         <img src='' alt='Image of PowerLifters'/>
                         <input
                             type='checkbox'
                         />
-                    </label>
+                    </StyledClassContainters>
 
-                    <label>Yoga: 
+                    <StyledClassContainters>Yoga: 
                         <img src='' alt='Image of Our Yoga Instructors'/>
                         <input
                             type='checkbox'
                         />
-                    </label>
+                    </StyledClassContainters>
 
-                    <label>Zumba: 
+                    <StyledClassContainters>Zumba: 
                         <img src='' alt='Image of Our Zumba Meets'/>
                         <input
                             type='checkbox'
                         />
-                    </label>
+                    </StyledClassContainters>
                 </StyledClassOptions>
 
                 <h3>Would You Like to be A Part of Our Newsletter?</h3>
