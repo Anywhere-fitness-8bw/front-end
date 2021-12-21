@@ -1,7 +1,8 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {Switch, Route, Link } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
+import ClassList from './components/ClassList';
 import schema from './validation/FormSchema';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -72,11 +73,12 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+
         <header className="header-container">
           <div className='nav-links'>
               <Link to='/'>Home</Link>
               <Link to='/login'>Login</Link>
+              <Link to= '/classes'>Classes</Link>
           </div>
         </header>
         <Switch>
@@ -89,12 +91,9 @@ function App() {
               errors={formErrors}
             />
           </Route>
-          <Route exact path='/'>
-            {/* <Homepage /> */}
-            <h1>Homepage goes here</h1>
-          </Route>
+          <Route exact path= "/classes" component= {ClassList}/>
         </Switch>
-      </Router>
+
     </div>
   );
 }
