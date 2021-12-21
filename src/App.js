@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import {Switch, Route, Link } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import ClassList from './components/ClassList';
+import Logout from './components/Logout';
 import schema from './validation/FormSchema';
 import axios from 'axios';
+import PrivateRoute from './components/PrivateRoute';
 import * as yup from 'yup';
 
 const initialFormValues = {
@@ -73,7 +75,6 @@ function App() {
 
   return (
     <div className="App">
-
         <header className="header-container">
           <div className='nav-links'>
               <Link to='/'>Home</Link>
@@ -91,7 +92,11 @@ function App() {
               errors={formErrors}
             />
           </Route>
-          <Route exact path= "/classes" component= {ClassList}/>
+          <PrivateRoute exact path = '/classlist' component={ClassList} />
+          <Route exact path ='/logout' >
+            <Logout />
+          </Route>
+          
         </Switch>
 
     </div>
