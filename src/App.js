@@ -10,9 +10,10 @@ import ItemsList from './components/ItemsList'
 const initialFormValues = {
 
   email: '',  
-  hiking: false,
-  reading: false,
-  coding: false,
+  crossfit: false,
+  powerlifting: false,
+  yoga: false,
+  zumba: false
 }
 
 const initialFormErrors = {
@@ -21,23 +22,22 @@ const initialFormErrors = {
 
 function App() {
 
-  const [friends, setFriends] = useState(initialFriends)          // array of friend objects
   const [formValues, setFormValues] = useState(initialFormValues) // object
   const [formErrors, setFormErrors] = useState(initialFormErrors) // object
   const [disabled, setDisabled] = useState(initialDisabled)       // boolean
 
-  const getFriends = () => {
-    axios.get('apiKey') //..........Api key goes here 
-      .then(resp => {
-        setFriends(resp.data);
-      }).catch(err => console.error(err))
-  }
+  // const getData = () => {
+  //   axios.get('apiKey') //..........Api key goes here 
+  //     .then(resp => {
+  //       database(resp.data);                           ...................get Data code here..............................
+  //     }).catch(err => console.error(err))
+  // }
   
-  const postNewFriend = newFriend => {
+  const postNewClassMember = newClass => {
     // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
     //    helper to [POST] `newFriend` to `http://buddies.com/api/friends`
     //    and regardless of success or failure, the form should reset
-    axios.post('http://buddies.com/api/friends', newFriend)
+    axios.post('apiKey', newFriend)
       .then(resp => {
         setFriends([ resp.data, ...friends ]);
       }).catch(err => console.error(err))
@@ -68,11 +68,10 @@ function App() {
       email: formValues.email.trim(),
       role: formValues.role.trim(),
       civil: formValues.civil.trim(),
-      // 🔥 STEP 7- WHAT ABOUT HOBBIES?
-      hobbies: ['hiking', 'reading', 'coding'].filter(hobby => !!formValues[hobby])
+      classes: ['crossfit', 'powerlifting', 'zumba', 'yoga'].filter(class => !!formValues[class])
     }
     // 🔥 STEP 8- POST NEW FRIEND USING HELPER
-    postNewFriend(newFriend);
+    postNewClassMember(newFriend);
   }
   
   useEffect(() => {
