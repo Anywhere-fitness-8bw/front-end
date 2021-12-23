@@ -92,8 +92,11 @@ function App() {
               errors={formErrors}
             />
           </Route>
-
-          <PrivateRoute exact path = '/classlist' component={ClassList} />
+          <Route>
+            <ClassList exact path='classlist' />
+          </Route>
+          {/* commented out private route so visitors can navigate page without submitting credentials */}
+          {/* <PrivateRoute exact path = '/classlist' component={ClassList} /> */}
           <Route exact path ='/logout' >
             <Logout />
           </Route>
