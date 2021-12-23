@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import schema from './validation/FormSchema';
-import * as yup from 'yup';
+// import formSchema from './validation/formSchema';
+// import * as yup from 'yup';
 import { useEffect, useState } from 'react';
 
 import ItemsList from './components/ItemsList'
@@ -21,72 +21,66 @@ const initialFormErrors = {
 }
 
 function App() {
-
+  const [member, setMember] = useState([])
   const [formValues, setFormValues] = useState(initialFormValues) // object
   const [formErrors, setFormErrors] = useState(initialFormErrors) // object
-  const [disabled, setDisabled] = useState(initialDisabled)       // boolean
+  const [disabled, setDisabled] = useState([])       // boolean
 
-  // const getData = () => {
-  //   axios.get('apiKey') //..........Api key goes here 
-  //     .then(resp => {
-  //       database(resp.data);                           ...................get Data code here..............................
-  //     }).catch(err => console.error(err))
-  // }
-  
-  const postNewClassMember = newClass => {
-    // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
-    //    helper to [POST] `newFriend` to `http://buddies.com/api/friends`
-    //    and regardless of success or failure, the form should reset
-    axios.post('apiKey', newFriend)
+  const getMember = () => {
+    axios.get('apiKey') //..........Api key goes here 
       .then(resp => {
-        setFriends([ resp.data, ...friends ]);
+        getMember(resp.data);                           //...................get Data code here..............................
+      }).catch(err => console.error(err))
+  }
+  
+  const postNewClassMember = newClassMember => {   
+    //    helper to [POST] `newMember` to `api key`
+    axios.post('apiKey', newClassMember)
+      .then(resp => {
+        setMember([ resp.data, ...member ]);
       }).catch(err => console.error(err))
       .finally(() => setFormValues(initialFormValues))
   }
   
-  const validate = (name, value) => {
-    yup.reach(schema, name)
-      .validate(value)
-      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
-      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
-  }
+  // // const validate = (name, value) => {
+  // //   yup.reach(schema, name)
+  // //     .validate(value)
+  // //     .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+  // //     .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  // // }
   
-  //////////////// EVENT HANDLERS ////////////////
-  //////////////// EVENT HANDLERS ////////////////
-  //////////////// EVENT HANDLERS ////////////////
-  const inputChange = (name, value) => {
-    validate(name, value);
-    setFormValues({
-      ...formValues,
-      [name]: value // NOT AN ARRAY
-    })
-  }
+  // const inputChange = (name, value) => {
+  //   validate(name, value);
+  //   setFormValues({
+  //     ...formValues,
+  //     [name]: value 
+  //   })
+  // }
   
   const formSubmit = () => {
-    const newFriend = {
+    const newMember = {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
       role: formValues.role.trim(),
       civil: formValues.civil.trim(),
-      classes: ['crossfit', 'powerlifting', 'zumba', 'yoga'].filter(class => !!formValues[class])
+      hobbeis: ['crossfit', 'powerlifting', 'zumba', 'yoga'].filter(hobby => !!formValues[hobby])
     }
-    // 🔥 STEP 8- POST NEW FRIEND USING HELPER
-    postNewClassMember(newFriend);
+    postNewClassMember(newMember);
   }
   
   useEffect(() => {
-    getFriends()
+    getMember();
   }, [])
   
-  useEffect(() => {
-    schema.isValid(formValues).then(valid => setDisabled(!valid))
-  }, [formValues])
+  // useEffect(() => {
+  //   schema.isValid(formValues).then(valid => setDisabled(!valid))
+  // }, [formValues])
 
   return (
     <div className="App">
       <ItemsList 
         values={formValues}
-        change={inputChange}
+        // change={inputChange}
         submit={formSubmit}
         disabled={disabled}
         errors={formErrors}

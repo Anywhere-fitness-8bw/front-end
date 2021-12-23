@@ -14,33 +14,6 @@ import { StyledH1,
         StyledClassContainers
     } from './Styles';
 
-    
-    
-    // const onSubmit = evt => {
-    //     evt.preventDefault()
-    //     submit()
-    // }
-    
-    // const onChange = evt => {
-    //     const { name, value, checked, type } = evt.target
-    //     const valueToUse = type === 'checkbox' ? checked : value;
-    //     change(name, valueToUse)
-    // }
-
-  
-    // const initialFormState = {
-    //     crossfit: checked === false ? true : false,
-    //     powerlifting: false,
-    //     yoga: false,
-    //     zumba: false,
-    //     email: ''
-    // }
-
-    
-    
-
-
-
 
 export default function ItemsList(props) {
 
@@ -58,7 +31,6 @@ export default function ItemsList(props) {
     }
     
     const onChange = evt => {
-        /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
         const { name, value, checked, type } = evt.target
         const valueToUse = type === 'checkbox' ? checked : value;
         change(name, valueToUse)
