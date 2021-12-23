@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 // import formSchema from './validation/formSchema';
 // import * as yup from 'yup';
 import { useEffect, useState } from 'react';
 
-import ItemsList from './components/ItemsList'
+import ItemsList from './components/ItemsList';
+// import Member from './Member';
+
+
+//.............................................ALL BITS OF COMMENTED CODE IS TO KEEP THE SITE FROM CRASHING WITHOUT A WORKING API.........................................
 
 const initialFormValues = {
 
@@ -16,15 +19,15 @@ const initialFormValues = {
   zumba: false
 }
 
-const initialFormErrors = {
-  email: '',
-}
+// const initialFormErrors = {
+//   email: '',
+// }
 
 function App() {
   const [member, setMember] = useState([])
   const [formValues, setFormValues] = useState(initialFormValues) // object
-  const [formErrors, setFormErrors] = useState(initialFormErrors) // object
-  const [disabled, setDisabled] = useState([])       // boolean
+  // const [formErrors, setFormErrors] = useState(initialFormErrors) // object
+  // const [disabled, setDisabled] = useState([])       // boolean
 
   const getMember = () => {
     axios.get('apiKey') //..........Api key goes here 
@@ -63,7 +66,7 @@ function App() {
       email: formValues.email.trim(),
       role: formValues.role.trim(),
       civil: formValues.civil.trim(),
-      hobbeis: ['crossfit', 'powerlifting', 'zumba', 'yoga'].filter(hobby => !!formValues[hobby])
+      classes: ['crossfit', 'powerlifting', 'zumba', 'yoga'].filter(classMember => !!formValues[classMember])
     }
     postNewClassMember(newMember);
   }
@@ -82,8 +85,8 @@ function App() {
         values={formValues}
         // change={inputChange}
         submit={formSubmit}
-        disabled={disabled}
-        errors={formErrors}
+        // disabled={disabled}
+        // errors={formErrors}
       />
     </div>
   );

@@ -18,6 +18,7 @@ export const StyledContainer = styled.div`
   align-items: center;
   background-color:  #FE6862;
   margin: 2rem 2rem;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.2);
 `;
 
 export const StyledClassOptions = styled.div`

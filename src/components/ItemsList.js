@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios'; 
-import { useEffect, useState } from 'react';
+
 
 import { StyledH1, 
         StyledH2, 
@@ -22,7 +21,7 @@ export default function ItemsList(props) {
         submit,
         change,
         disabled,
-        errors,
+        // errors, no errors since form cant be completed!!!
     } = props;
 
     const onSubmit = evt => {
@@ -111,7 +110,7 @@ export default function ItemsList(props) {
                 </label>
                 </StyledClassContainers>
                                 
-                <StyledContainer>
+                <StyledClassContainers>
                 <StyledH3>Would You Like to be A Part of Our Newsletter?</StyledH3>
                 <label email='email'>
                     <input
@@ -122,7 +121,7 @@ export default function ItemsList(props) {
                         placeholder={`What's Your Email?`}
                     />
                 </label>
-                </StyledContainer>
+                </StyledClassContainers>
             </form>            
            <StyledButton disabled={disabled}>Sign Up for Your Class!</StyledButton> 
         </StyledContainer>
